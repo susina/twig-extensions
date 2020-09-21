@@ -1,0 +1,12 @@
+--TEST--
+"double" test
+--TEMPLATE--
+{{ array1 is double ? 'true' : 'false' }}
+{{ bool1 is double ? 'true' : 'false' }}
+{{ double1 is double ? 'true' : 'false' }}
+--DATA--
+return ['array1' => [100, 150], 'bool1' => true, 'double1' => 3.14]
+--EXPECT--
+false
+false
+true

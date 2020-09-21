@@ -1,0 +1,14 @@
+--TEST--
+"boolean" test
+--TEMPLATE--
+{{ array1 is boolean ? 'true' : 'false' }}
+{{ bool1 is boolean ? 'true' : 'false' }}
+{{ bool2 is boolean ? 'true' : 'false' }}
+{{ string1 is boolean ? 'true' : 'false' }}
+--DATA--
+return ['array1' => [100, 150], 'bool1' => true, 'bool2' => false, 'string1' => 'true']
+--EXPECT--
+false
+true
+true
+false

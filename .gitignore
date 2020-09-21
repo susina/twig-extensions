@@ -1,0 +1,6 @@
+*.lock
+*.phar
+*.cache
+build/
+coverage/
+vendor/

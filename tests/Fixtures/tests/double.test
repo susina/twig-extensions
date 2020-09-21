@@ -1,0 +1,12 @@
+--TEST--
+"float" test
+--TEMPLATE--
+{{ array1 is float ? 'true' : 'false' }}
+{{ bool1 is float ? 'true' : 'false' }}
+{{ float1 is float ? 'true' : 'false' }}
+--DATA--
+return ['array1' => [100, 150], 'bool1' => true, 'float1' => 3.14]
+--EXPECT--
+false
+false
+true

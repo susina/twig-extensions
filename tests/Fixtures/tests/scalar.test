@@ -1,0 +1,15 @@
+--TEST--
+"scalar" test
+--TEMPLATE--
+{{ array1 is scalar ? 'true' : 'false' }}
+{{ scalar1 is scalar ? 'true' : 'false' }}
+{{ scalar2 is scalar ? 'true' : 'false' }}
+{{ obj1 is scalar ? 'true' : 'false' }}
+--DATA--
+return ['array1' => [100, 150], 'scalar1' => 'my scalar', 'scalar2' => 148, 'obj1' => new \ArrayIterator()]
+--EXPECT--
+false
+true
+true
+false
+

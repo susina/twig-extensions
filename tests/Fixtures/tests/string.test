@@ -1,0 +1,13 @@
+--TEST--
+"string" test
+--TEMPLATE--
+{{ array1 is string ? 'true' : 'false' }}
+{{ string1 is string ? 'true' : 'false' }}
+{{ string2 is string ? 'true' : 'false' }}
+--DATA--
+return ['array1' => [100, 150], 'string1' => 'my string', 'string2' => 148]
+--EXPECT--
+false
+true
+false
+

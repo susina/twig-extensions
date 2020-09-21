@@ -1,0 +1,10 @@
+--TEST--
+"bool_to_string" filter test
+--TEMPLATE--
+{{ bool1|bool_to_string }}
+{{ bool2|bool_to_string }}
+--DATA--
+return ['bool1' => true, 'bool2' => false]
+--EXPECT--
+true
+false

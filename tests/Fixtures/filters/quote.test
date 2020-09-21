@@ -1,0 +1,14 @@
+--TEST--
+"quote" filter test
+--TEMPLATE--
+{% autoescape false %}
+{{ string1|quote }}
+{{ string1|quote('`') }}
+{{ string1|quote('"') }}
+{% endautoescape %}
+--DATA--
+return ['string1' => 'a string']
+--EXPECT--
+'a string'
+`a string`
+"a string"

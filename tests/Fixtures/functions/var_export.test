@@ -1,0 +1,17 @@
+--TEST--
+"get_type" test
+--TEMPLATE--
+{% autoescape false %}
+{{ var_export(array1) }}
+{{ var_export(scalar1) }}
+{{ var_export(int1) }}
+{% endautoescape %}
+--DATA--
+return ['array1' => [100, 150], 'scalar1' => 'a string', 'int1' => 1024]
+--EXPECT--
+array (
+  0 => 100,
+  1 => 150,
+)
+'a string'
+1024

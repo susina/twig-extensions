@@ -1,0 +1,14 @@
+--TEST--
+"array" test
+--TEMPLATE--
+{{ array1 is array ? 'true' : 'false' }}
+{{ array2 is iterable ? 'true' : 'false' }}
+{{ array2 is array ? 'true' : 'false' }}
+{{ scalar is array ? 'true' : 'false' }}
+--DATA--
+return ['array1' => [100, 150], 'array2' => new \ArrayIterator(), 'scalar' => 'a string']
+--EXPECT--
+true
+true
+false
+false

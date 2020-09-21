@@ -1,0 +1,11 @@
+--TEST--
+"object" test
+--TEMPLATE--
+{{ array1 is object ? 'true' : 'false' }}
+{{ obj1 is object ? 'true' : 'false' }}
+--DATA--
+return ['array1' => [100, 150], 'obj1' => new \ArrayIterator()]
+--EXPECT--
+false
+true
+

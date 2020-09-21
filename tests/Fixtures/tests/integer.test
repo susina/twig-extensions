@@ -1,0 +1,12 @@
+--TEST--
+"integer" test
+--TEMPLATE--
+{{ array1 is integer ? 'true' : 'false' }}
+{{ int1 is integer ? 'true' : 'false' }}
+{{ int2 is integer ? 'true' : 'false' }}
+--DATA--
+return ['array1' => [100, 150], 'int1' => 3, 'int2' => 0]
+--EXPECT--
+false
+true
+true

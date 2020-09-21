@@ -1,0 +1,18 @@
+--TEST--
+"get_type" test
+--TEMPLATE--
+{{ get_type(array1) }}
+{{ get_type(iterator1) }}
+{{ get_type(scalar1) }}
+{{ get_type(int1) }}
+{{ get_type(3.14) }}
+{{ get_type(true) }}
+--DATA--
+return ['array1' => [100, 150], 'iterator1' => new \ArrayIterator(), 'scalar1' => 'a string', 'int1' => 1024]
+--EXPECT--
+array
+object
+string
+integer
+double
+boolean
