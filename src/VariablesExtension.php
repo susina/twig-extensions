@@ -29,6 +29,7 @@ class VariablesExtension extends AbstractExtension
             new TwigTest('object', 'is_object'),
             new TwigTest('scalar', 'is_scalar'),
             new TwigTest('string', 'is_string'),
+            new TwigTest('instanceOf', fn (object $object, string $class): bool => is_a($object, $class)),
         ];
     }
 

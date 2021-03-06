@@ -1,0 +1,10 @@
+--TEST--
+"instanceOf" test
+--TEMPLATE--
+{{ object1 is instanceOf('\ArrayIterator') ? 'true' : 'false' }}
+{{ object2 is instanceOf('\ArrayIterator') ? 'true' : 'false' }}
+--DATA--
+return ['object1' => new \ArrayIterator(), 'object2' => new \SplStack()]
+--EXPECT--
+true
+false

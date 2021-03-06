@@ -26,11 +26,11 @@
     },
     "require-dev" : {
         "phpunit/phpunit": "^9.3",
-        "vimeo/psalm": "^3.16",
-        "susina/coding-standard": "^1.2"
+        "susina/coding-standard": "^1.2",
+        "psalm/phar": "^4.6"
     },
     "scripts": {
-        "analytics": "psalm",
+        "analytics": "vendor/bin/psalm.phar",
         "check": [
             "@test",
             "@analytics",
@@ -40,7 +40,7 @@
         "coverage:clover": "@test --coverage-clover clover.xml",
         "cs": "php-cs-fixer fix -v --diff --dry-run",
         "cs-fix": "php-cs-fixer fix -v --diff",
-        "test": "phpunit --colors=always"
+        "test": "phpunit --colors=always --exclude-group=legacy"
     },
     "scripts-descriptions": {
         "analytics": "Run static analysis tool",

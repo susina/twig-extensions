@@ -40,12 +40,17 @@ When you register this extension you can use the following type tests:
 -  `object` to test if a variable is an object.
 -  `scalar` to test if a variable is a scalar (see https://www.php.net/manual/en/function.is-scalar.php).
 -  `string` to test if a variable is a string.
+-  `instanceOf(class_name)` to test if an object is an instance of _class_name_ class  
 
 and you can use them in your templates:
 
 ```twig
 {% if variable is string %}
     The variable {{ variable }} is a string.
+{% endif %}
+
+{% if object is instanceOf('\SplStack') %}
+    Object is a Stack
 {% endif %}
 ```
 

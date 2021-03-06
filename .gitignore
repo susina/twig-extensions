@@ -1,6 +1,7 @@
 *.lock
 *.phar
 *.cache
+clover.xml
 build/
 coverage/
 vendor/
