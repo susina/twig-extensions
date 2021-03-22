@@ -3,8 +3,10 @@
 --TEMPLATE--
 {{ object1 is instanceOf('\ArrayIterator') ? 'true' : 'false' }}
 {{ object2 is instanceOf('\ArrayIterator') ? 'true' : 'false' }}
+{{ object3 is instanceOf('\ArrayIterator') ? 'true' : 'false' }}
 --DATA--
-return ['object1' => new \ArrayIterator(), 'object2' => new \SplStack()]
+return ['object1' => new \ArrayIterator(), 'object2' => new \SplStack(), 'object3' => null]
 --EXPECT--
 true
+false
 false
