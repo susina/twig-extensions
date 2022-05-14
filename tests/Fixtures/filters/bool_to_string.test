@@ -1,10 +1,14 @@
 --TEST--
 "bool_to_string" filter test
 --TEMPLATE--
-{{ bool1|bool_to_string }}
-{{ bool2|bool_to_string }}
+{{ bool1 | bool_to_string }}
+{{ bool2 | bool_to_string }}
+{{ bool2 | bool_to_string('yes', 'no') }}
+{{ bool1 | bool_to_string('light', 'darkness') }}
 --DATA--
 return ['bool1' => true, 'bool2' => false]
 --EXPECT--
 true
 false
+no
+light

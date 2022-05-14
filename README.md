@@ -8,7 +8,7 @@ It contains some useful functions, tests and filters missing in the original lib
 
 ## Installation
 
-Firstly, install via Composer:
+Firstly, install the package via Composer:
 
 ```
 composer require susina/twig-extensions
@@ -23,6 +23,15 @@ $loader = new Twig\Loader\FileLoader(__DIR__ . '/templates');
 $twig = new \Twig\Environment($loader);
 
 $twig->addExtension(new \Susina\TwigExtensions\VariablesExtension());
+```
+
+Or, if you are working with Symfony, register the extensions you want as services and tag them as `twig.extension`:
+
+```yaml
+// In your `services.yml` file
+services:
+    Susina\TwigExtensions\GravatarExtension:
+        tags: [twig.extension]
 ```
 
 ## VariablesExtension
@@ -68,13 +77,21 @@ behaves in the same way. It can be useful if you want to generate some valid php
 
 ### Filters
 
-`bool_to_string` filter return the string 'true' if the variable filtered can be evaluated as _true_, otherwise
+`bool_to_string` filter returns the string 'true' if the variable filtered can be evaluated as _true_, otherwise
 it returns the string _false_:
 
 ```twig
 The "boolVariable" is {{ boolVariable|bool_to_string }}.
 ```
 it returns `The "boolVariable" is true`.
+
+You can customize the _true/false_ strings by passing two variables to the filter: the first one represents the 
+_true_ value, the second one the _false_ value, i.e.:
+
+```twig
+The "boolVariable" is {{ boolVariable|bool_to_string('yes', 'no' }}.
+```
+it returns `The "boolVariable" is yes`.
 
 ## StringExtension
 
@@ -97,6 +114,23 @@ By default, the filter applies single quotes `'` but you can pass any character 
 ```
 then it returns `"Donald Duck"`.
 
+
+## Gravatar Extension
+
+Gravatar extension contain a filter to retrieve the [Gravatar](https://www.gravatar.com) image from a given email.
+`gravatar` filter returns the uri for the avatar and you can easily use it in your html:
+
+```twig
+<img src="{{ me@my-email.com | gravatar }}" alt="My avatar" />
+```
+
+You can also pass some options to the filter, i.e.:
+```twig
+<img src="{{ me@my-email.com | gravatar({ size: 200, default: mp }) }}" alt="My avatar" />
+```
+
+For a full options description, please see [https://en.gravatar.com/site/implement/images/](https://en.gravatar.com/site/implement/images/).
+
 ## Issues
 
 We manage issues and feature requests via [Github repository issues](https://github.com/susina/twig-extensions/issues).
@@ -109,8 +143,8 @@ This library includes some useful composer scripts for developers:
 
 -  `composer test` to run the test suite
 -  `composer analytics` to run [Psalm](https://psalm.dev/) static analysis tool
--  `composer cs-fix` to fix coding standard
--  `composer cs` to check the coding standard (see https://github.com/susina/coding-standard for details)
+-  `composer cs:fix` to fix coding standard
+-  `composer cs:check` to check the coding standard (see https://github.com/susina/coding-standard for details)
 -  `composer coverage:html` to generate code coverage report in html format (into `/coverage` directory)
 -  `composer coverage:clover` to generate code coverage report in xml format
 -  `composer check` runs the first three commands

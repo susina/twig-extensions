@@ -1,0 +1,20 @@
+--TEST--
+"gravatar" filter test
+--TEMPLATE--
+{{ email | gravatar }}
+{{ email | gravatar({"size": 500}) }}
+{{ email | gravatar({"forcedefault": true}) }}
+{{ email | gravatar({"default": "mp"}) }}
+{{ email | gravatar({"default": "https://domain.org/image.jpg"}) }}
+{{ email | gravatar({"rating": "pg"}) }}
+{{ email | gravatar({"size": 500, "forcedefault": true, "default": "mp", "rating": "pg"}) }}
+--DATA--
+return ['email' => "email@example.org"]
+--EXPECT--
+https://secure.gravatar.com/avatar/8fbf4bd0581c9ccc67c560dea9931a1b
+https://secure.gravatar.com/avatar/8fbf4bd0581c9ccc67c560dea9931a1b?size=500
+https://secure.gravatar.com/avatar/8fbf4bd0581c9ccc67c560dea9931a1b?forcedefault=y
+https://secure.gravatar.com/avatar/8fbf4bd0581c9ccc67c560dea9931a1b?default=mp
+https://secure.gravatar.com/avatar/8fbf4bd0581c9ccc67c560dea9931a1b?default=https%253A%252F%252Fdomain.org%252Fimage.jpg
+https://secure.gravatar.com/avatar/8fbf4bd0581c9ccc67c560dea9931a1b?rating=pg
+https://secure.gravatar.com/avatar/8fbf4bd0581c9ccc67c560dea9931a1b?size=500&amp;forcedefault=y&amp;default=mp&amp;rating=pg

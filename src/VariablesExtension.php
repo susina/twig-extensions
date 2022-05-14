@@ -29,7 +29,7 @@ class VariablesExtension extends AbstractExtension
             new TwigTest('object', 'is_object'),
             new TwigTest('scalar', 'is_scalar'),
             new TwigTest('string', 'is_string'),
-            new TwigTest('instanceOf', fn (?object $object, string $class): bool => is_a($object, $class)),
+            new TwigTest('instanceOf', fn (?object $object, string $class): bool => $object instanceof $class),
         ];
     }
 
@@ -48,7 +48,10 @@ class VariablesExtension extends AbstractExtension
     public function getFilters(): array
     {
         return [
-            new TwigFilter('bool_to_string', fn (bool $value): string => $value ? 'true' : 'false'),
+            new TwigFilter(
+                'bool_to_string',
+                fn (bool $value, string $true = 'true', string $false = 'false'): string => $value ? $true : $false
+            )
         ];
     }
 }

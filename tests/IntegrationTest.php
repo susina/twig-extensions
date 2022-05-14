@@ -11,25 +11,27 @@
 
 namespace Susina\TwigExtensions\Tests;
 
+use Susina\TwigExtensions\GravatarExtension;
 use Susina\TwigExtensions\StringExtension;
 use Susina\TwigExtensions\VariablesExtension;
 use Twig\Test\IntegrationTestCase;
 
 class IntegrationTest extends IntegrationTestCase
 {
-    public function getExtensions()
+    public function getExtensions(): array
     {
         return [
             new VariablesExtension(),
             new StringExtension(),
+            new GravatarExtension()
         ];
     }
 
     /**
      * {@inheritdoc}
      */
-    protected function getFixturesDir()
+    protected function getFixturesDir(): string
     {
-        return __DIR__.'/Fixtures';
+        return __DIR__ . '/Fixtures';
     }
 }
