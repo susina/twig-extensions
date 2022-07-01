@@ -21,7 +21,7 @@
         }
     },
     "require": {
-        "php" : ">=7.4",
+        "php" : ">=8.0",
         "twig/twig": "^3.0",
         "symfony/options-resolver": "^5.4|^6.0"
     },

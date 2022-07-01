@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 /*
- * Copyright (c) 2020 Cristiano Cinotti
+ * Copyright (c) 2020 - 2022 Cristiano Cinotti
  *
  * This file is part of the Susina\TwigExtensions package.
  * For the full copyright and license information, please view the LICENSE
@@ -20,6 +20,20 @@ class StringExtension extends AbstractExtension
     {
         return [
             new TwigFilter('quote', fn (string $value, string $quot = '\''): string => "{$quot}$value{$quot}"),
+            new TwigFilter(
+                'to_kb',
+                fn (string|int $value, ?string $decimal = null, ?string $thousands = null): string =>
+                    (int) $value % 1024 ?
+                        number_format((int) $value / 1024, 2, $decimal, $thousands) :
+                        number_format((int) $value / 1024)
+            ),
+            new TwigFilter(
+                'to_mb',
+                fn (string|int $value, ?string $decimal = null, ?string $thousands = null): string =>
+                (int) $value % 1048576 ?
+                    number_format((int) $value / 1048576, 2, $decimal, $thousands) :
+                    number_format((int) $value / 1048576)
+            )
         ];
     }
 }

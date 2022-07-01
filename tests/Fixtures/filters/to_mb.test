@@ -1,0 +1,16 @@
+--TEST--
+"to_mb" filter test
+--TEMPLATE--
+{{ size|to_mb }}
+{{ size1|to_mb }}
+{{ size2|to_mb }}
+{{ size3|to_mb }}
+{{ size3|to_mb(',', '.') }}
+--DATA--
+return ['size' => '125829120', 'size1' => 125829120, 'size2' => 500000, 'size3' => 5000000000]
+--EXPECT--
+120
+120
+0.48
+4,768.37
+4.768,37
