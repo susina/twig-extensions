@@ -25,7 +25,10 @@ $twig = new \Twig\Environment($loader);
 $twig->addExtension(new \Susina\TwigExtensions\VariablesExtension());
 ```
 
-Or, if you are working with Symfony, register the extensions you want as services and tag them as `twig.extension`:
+### Symfony Framework
+
+If you are working with Symfony, after installing the library with composer, register the extensions you want as services
+and tag them as `twig.extension`:
 
 ```yaml
 // In your `services.yml` file
@@ -65,17 +68,23 @@ and you can use them in your templates:
 
 ### Functions
 
+#### get_type
+
 `get_type` function returns the variable type:
 
 ```twig
 The variable `variable` is a {{ get_type(variable) }}.
 ```
 
+#### var_export
+
 `var_export` function is a wrapper for PHP [var_export](https://www.php.net/manual/en/function.var-export.php) and it
 behaves in the same way. It can be useful if you want to generate some valid php code from a variable.
 
 
 ### Filters
+
+#### bool_to_string
 
 `bool_to_string` filter returns the string 'true' if the variable filtered can be evaluated as _true_, otherwise
 it returns the string _false_:
@@ -97,6 +106,7 @@ it returns `The "boolVariable" is yes`.
 
 ### Filters
 
+#### quote
 You can apply `quote` filter to a string, if you want to surround it with quotes:
 
 ```twig
@@ -114,11 +124,44 @@ By default, the filter applies single quotes `'` but you can pass any character 
 ```
 then it returns `"Donald Duck"`.
 
+#### to_kb
+
+`to_kb` filter transform a number from bytes to kilobytes:
+
+```twig
+{% set variable = 2048 }}
+
+The file size is {{ variable|to_kb }} Kb
+```
+it returns: `The file size is 2 Kb`.
+
+By default, this filter uses the English decimal and thousands separator: `.` for decimal and `,` form thousands.
+You can change this behavior by passing different separators:
+
+```twig
+{% set variable = 5000000 }}
+
+English: {{ variable|to_kb }} Kb
+
+French: {{ variable|to_kb(',', '.') }}
+```
+
+it returns:
+
+```
+English: 4,882.81
+
+French: 4.882,81
+```
+
+#### to_mb
+
+`to_mb` filter transform a number from bytes to megabytes. The behavior is the same as `to_kb`.
 
 ## Gravatar Extension
 
 Gravatar extension contain a filter to retrieve the [Gravatar](https://www.gravatar.com) image from a given email.
-`gravatar` filter returns the uri for the avatar and you can easily use it in your html:
+`gravatar` filter returns the uri for the avatar so that you can easily use it in your html:
 
 ```twig
 <img src="{{ me@my-email.com | gravatar }}" alt="My avatar" />
