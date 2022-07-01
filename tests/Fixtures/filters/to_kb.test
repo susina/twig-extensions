@@ -1,0 +1,16 @@
+--TEST--
+"to_kb" filter test
+--TEMPLATE--
+{{ size|to_kb }}
+{{ size1|to_kb }}
+{{ size2|to_kb }}
+{{ size3|to_kb }}
+{{ size3|to_kb(',', '.') }}
+--DATA--
+return ['size' => '131072', 'size1' => 131072, 'size2' => 1000, 'size3' => 5000000]
+--EXPECT--
+128
+128
+0.98
+4,882.81
+4.882,81
