@@ -8,14 +8,14 @@ jobs:
       fail-fast: false
       matrix:
         operating-system: [ubuntu-latest, windows-latest, macOS-latest]
-        php-versions: ['7.4', '8.0', '8.1']
+        php-versions: ['7.4', '8.0', '8.1', '8.2']
     runs-on: ${{ matrix.operating-system }}
     steps:
       - name: Set autocrlf on windows
         if: matrix.operating-system == 'windows-latest'
         run: git config --global core.autocrlf false
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Setup PHP, with composer and extensions
         uses: shivammathur/setup-php@v2
         with:

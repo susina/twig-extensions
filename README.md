@@ -2,6 +2,8 @@
 
 ![](https://github.com/susina/twig-extensions/workflows/Tests/badge.svg)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Maintainability](https://api.codeclimate.com/v1/badges/831eda00e9f77d300e04/maintainability)](https://codeclimate.com/github/susina/twig-extensions/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/831eda00e9f77d300e04/test_coverage)](https://codeclimate.com/github/susina/twig-extensions/test_coverage)
 
 Susina Twig Extensions is a set of extensions for [Twig](https://twig.symfony.com) template engine.
 It contains some useful functions, tests and filters missing in the original library. 
