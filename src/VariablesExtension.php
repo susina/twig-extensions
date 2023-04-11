@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 /*
- * Copyright (c) 2020 - 2022 Cristiano Cinotti
+ * Copyright (c) 2020 - 2023 Cristiano Cinotti
  *
  * This file is part of the Susina\TwigExtensions package.
  * For the full copyright and license information, please view the LICENSE
