@@ -23,8 +23,7 @@ class StringExtension extends AbstractExtension
             new TwigFilter('quote', fn (string $value, string $quot = '\''): string => "{$quot}$value{$quot}"),
             new TwigFilter(
                 'to_*',
-                function (string $suffix, string|int $value, ?string $decimal = null, ?string $thousands = null): string
-                {
+                function (string $suffix, string|int $value, ?string $decimal = null, ?string $thousands = null): string {
                     $divider = match ($suffix) {
                         'kb' => 1024,
                         'mb' => 1048576,
@@ -35,8 +34,8 @@ class StringExtension extends AbstractExtension
                     return (int) $value % $divider ?
                         number_format((int) $value / $divider, 2, $decimal, $thousands) :
                         number_format((int) $value / $divider)
-                    ;            
-                }    
+                    ;
+                }
             )
         ];
     }

@@ -9,11 +9,10 @@
  * @license Apache-2.0
  */
 
- namespace Susina\TwigExtensions\Exception;
+namespace Susina\TwigExtensions\Exception;
 
 use Twig\Error\Error;
 
- class TwigFilterException extends Error
- {
- }
- 
+class TwigFilterException extends Error
+{
+}
