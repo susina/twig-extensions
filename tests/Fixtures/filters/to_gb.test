@@ -1,0 +1,16 @@
+--TEST--
+"to_gb" filter test
+--TEMPLATE--
+{{ size|to_gb }}
+{{ size1|to_gb }}
+{{ size2|to_gb }}
+{{ size3|to_gb }}
+{{ size3|to_gb(',', '.') }}
+--DATA--
+return ['size' => '128849018880', 'size1' => 128849018880, 'size2' => 515396075,52, 'size3' => 5000000000000]
+--EXPECT--
+120
+120
+0.48
+4,656.61
+4.656,61

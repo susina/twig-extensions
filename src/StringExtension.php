@@ -11,6 +11,7 @@
 
 namespace Susina\TwigExtensions;
 
+use Susina\TwigExtensions\Exception\TwigFilterException;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
@@ -21,18 +22,21 @@ class StringExtension extends AbstractExtension
         return [
             new TwigFilter('quote', fn (string $value, string $quot = '\''): string => "{$quot}$value{$quot}"),
             new TwigFilter(
-                'to_kb',
-                fn (string|int $value, ?string $decimal = null, ?string $thousands = null): string =>
-                    (int) $value % 1024 ?
-                        number_format((int) $value / 1024, 2, $decimal, $thousands) :
-                        number_format((int) $value / 1024)
-            ),
-            new TwigFilter(
-                'to_mb',
-                fn (string|int $value, ?string $decimal = null, ?string $thousands = null): string =>
-                (int) $value % 1048576 ?
-                    number_format((int) $value / 1048576, 2, $decimal, $thousands) :
-                    number_format((int) $value / 1048576)
+                'to_*',
+                function (string $suffix, string|int $value, ?string $decimal = null, ?string $thousands = null): string
+                {
+                    $divider = match ($suffix) {
+                        'kb' => 1024,
+                        'mb' => 1048576,
+                        'gb' => 1073741824,
+                        default => throw new TwigFilterException("The filter `to_$suffix` does not exist. Available filters are: `to_kb`, `to_mb`,`to_gb`.")
+                    };
+
+                    return (int) $value % $divider ?
+                        number_format((int) $value / $divider, 2, $decimal, $thousands) :
+                        number_format((int) $value / $divider)
+                    ;            
+                }    
             )
         ];
     }
