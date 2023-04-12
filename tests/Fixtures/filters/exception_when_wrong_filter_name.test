@@ -1,0 +1,8 @@
+--TEST--
+Exception thrown when `to_*` is not a valid name
+--TEMPLATE--
+{{ size | to_pb }}
+--DATA--
+return ['size' => 1024]
+--EXCEPTION--
+Susina\TwigExtensions\Exception\TwigFilterException: The filter `to_pb` does not exist. Available filters are: `to_kb`, `to_mb`,`to_gb` in "index.twig" at line 2.
